@@ -11,3 +11,59 @@
  *= require_self
  *= require_tree .
  */
+
+.product-bubble{
+	border: dotted 2px black;
+	display: inline-block;
+	height: 250px;
+	border-radius: 20px;
+	background-color: beige;
+	text-align: center;
+	vertical-align: middle;
+	padding: 4px;
+	margin: 4px;
+	min-height:100px;
+	width:22%;
+}
+
+.cartstyle{
+	width:40px;
+	height:40px;
+	background-image: url(<%= asset_path 'fullcart.png' %>);
+	background-size: 50px 50px;
+	font-size: 24px;
+	padding-top: 6px;
+	text-align: center;
+}
+
+.cartstyle a{
+	color:red;
+	text-decoration:none;
+}
+
+.cartstyle a:hover{
+	color:white;
+}
+
+.button{
+  background-color: #F3F781;
+  color:blue;
+  border-radius: 5px;
+}
+
+.cart_total{
+	font-weight:bold;
+	text-align:left;
+}
+
+#cart_detail_panel{
+	display:none;
+}
+
+.idnum{
+	width: 50px;
+}
+
+.order-history-table .contact-information{
+	display:none;
+}

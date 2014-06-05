@@ -1,0 +1,6 @@
+alert('Thank you for choosing <%= @product_name %>');
+
+
+$('#cart_msg').html('<%= escape_javascript(render "cart") %>');
+
+$('#cart_count').html('<%= escape_javascript(render "cartcount") %>');

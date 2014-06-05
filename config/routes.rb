@@ -1,4 +1,15 @@
 Techtalentstore::Application.routes.draw do
+  
+  get "store/index"
+  post "store/add_to_cart"
+  delete "store/remove_cart_item"
+  get "description" => "store#description", as: :product_description
+  
+  root 'store#index'
+
+  devise_for :users
+  resources :products
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

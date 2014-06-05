@@ -1,0 +1,23 @@
+<div>
+	<div>
+		<% @products.each do  |product| %>
+			<div class="product-bubble">
+				<strong><%= product.name %></strong><br />
+				<%= number_to_currency(product.unit_price, :unit => "$") %><br />
+				<%= link_to "Click for Description", product_description_path(:id => product.id) %><br />
+				<div>
+					<!-- A field to put how many of the item you want to buy. -->
+					<input type="text" class="quantity" placeholder="Enter Qty." size="7" /><br />
+					<!-- Below is the submit button for the above text field -->
+					<button class="add-to-cart-button" 
+					data-product-id="<%= product.id %>" 
+					data-product-name="<%= product.name %>"
+					data-price="<%= product.unit_price %>"
+					id="button">Add to Cart</button>
+					<!-- Check out 'store.js' for the functionality of this all -->
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+
