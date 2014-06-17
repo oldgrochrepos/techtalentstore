@@ -7,13 +7,13 @@
 		<% @cart.each do |key, value| %>
 			<div>
 				<%= value [0] %> <%= value[1] %> @ <%= number_to_currency(value[2]) %> 
-				<%= link_to "x", store_remove_cart_item_path(:product_id => key), :method => :delete %>
+				<%= link_to "x", store_remove_from_cart_path(:product_id => key), :method => :delete, :class => "delete-from-cart-button" %>
 			</div>
 		<% end %>
 		<hr width="20%" align="left" />
 		<div id="cart_total">
 			Total: <%= number_to_currency(@sum) %>
-			<%= link_to "Place Order", root_path %>
+			<%= link_to "Place Order", new_customer_path %>
 		</div>
 </div>
 <% end %>

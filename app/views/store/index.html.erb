@@ -1,4 +1,10 @@
 <div>
+	<div id="cart_count">
+		<%= render 'cartcount' %>
+	</div>
+	<div id="cart_msg">
+		<%= render 'cart' %>
+	</div>
 	<div>
 		<% @products.each do  |product| %>
 			<div class="product-bubble">

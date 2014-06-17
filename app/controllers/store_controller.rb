@@ -6,6 +6,13 @@ class StoreController < ApplicationController
 		#we want to display the products that have a buyable quantity
 		#(i.e., more than zero!), and display them in alphabetical order.
 		@products = Product.where('quantity > 0').order(:name)
+
+    if session[:cart].nil?
+      session[:cart] = {}
+    end
+    @cart = session[:cart]
+
+    @sum = Cart.sum_total(@cart)
 	end
 
 	def description
@@ -36,6 +43,7 @@ class StoreController < ApplicationController
       old_quantity = value_array[0]
       new_quantity = old_quantity + quantity
   		current_cart[product_id] = [new_quantity, @product_name, price]
+      #the current_cart is a has, where the product_id is key, and an array, #which contains the quantity desired, the product name, and the price #per unit, is the value
   	end
 
   	@cart = current_cart
@@ -45,6 +53,11 @@ class StoreController < ApplicationController
     @sum = Cart.sum_total(@cart)
 	end
 
-	def remove_cart_item
+	def remove_from_cart
+    product_id = params[:product_id].to_i
+    @cart = session[:cart]
+    @cart.delete(product_id)
+
+    redirect_to store_index_path
 	end
 end

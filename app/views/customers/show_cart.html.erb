@@ -1,0 +1,36 @@
+<div>
+    <table>
+    <% order.line_items.each do |item| %>
+        <tr>
+        <td><%= item.quantity %></td>
+        <td><%= item.product.name %></td>
+        <td width="5"></td>
+        <td><%= number_to_currency item.unit_price %></td>
+        </tr>
+    <% end %>
+    </table>
+    <hr width="20%" align="left"/>
+    <table>
+      <tr>
+        <td style="strong">Sub Total: </td>
+        <td width="50"></td>
+        <td><%= number_to_currency order.sub_total %></td>
+      </tr>
+      <tr>
+        <td>Sales Tax (<%= Order::CURRENT_SALES_TAX %>%): </td>
+        <td width="50"></td>
+        <td><%= number_to_currency order.sales_tax %></td>
+      </tr>
+    </table>
+    <hr width="20%" align="left"/>
+    <table>
+      <tr style="color:red;font-style:strong">
+        <td>Grand Total:</td>
+        <td width="75"></td>
+        <td><%= number_to_currency order.grand_total %></td>
+      </tr>
+    </table>
+</div>
+<div>
+<%= link_to 'Back to Storefront', root_path %>
+</div>

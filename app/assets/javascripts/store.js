@@ -22,4 +22,18 @@ $(document).ready(function () {
 			alert('C\'mon. Don\'t be like that.')
 		}
 	});
+
+	$('.delete-from-cart-button').click(function () {
+		$.post('/store/remove_from_cart');
+	});
+
+	$(document).on('click', '#toggle_cart_button', function () {
+
+		var display = $('#cart_detail_panel').css('display');
+		if (display == "none"){
+			$('#cart_detail_panel').slideDown();
+		}else{
+			$('#cart_detail_panel').slideUp();
+		}
+	});
 });
