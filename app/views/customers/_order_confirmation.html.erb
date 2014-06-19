@@ -1,8 +1,9 @@
 <h4>Please review your order below!</h4>
-    <% order = @customer.order %>
-    <% if ! order.blank? %>
+    <% if @order.blank? %>
+        <p>Your Cart is Empty!</p>
+    <% else %>
       <table>
-      <% order.line_items.each do |thing| %>
+      <% @order.line_items.each do |thing| %>
           <tr>
           <td><%= thing.quantity %></td>
           <td><%= thing.product.name %></td>
@@ -16,12 +17,12 @@
         <tr>
           <td style="strong">Sub Total: </td>
           <td width="50"></td>
-          <td><%= number_to_currency order.sub_total %></td>
+          <td><%= number_to_currency @order.sub_total %></td>
         </tr>
         <tr>
-          <td>Sales Tax (<%= Order.sales_tax %>%): </td>
+          <td>Sales Tax (<%= Order::CURRENT_SALES_TAX %>%): </td>
           <td width="50"></td>
-          <td><%= number_to_currency order.sales_tax %></td>
+          <td><%= number_to_currency @order.sales_tax %></td>
         </tr>
       </table>
       <hr width="20%" align="left"/>
@@ -29,9 +30,7 @@
         <tr style="color:red;font-style:strong">
           <td>Grand Total:</td>
           <td width="75"></td>
-          <td><%= number_to_currency order.grand_total %></td>
+          <td><%= number_to_currency @order.grand_total %></td>
         </tr>
       </table>
-    <% else %>
-      Your Cart is Empty!
     <% end %>

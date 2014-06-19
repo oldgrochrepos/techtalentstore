@@ -6,7 +6,7 @@ Techtalentstore::Application.routes.draw do
   post "store/add_to_cart"
   delete "store/remove_from_cart"
   get "description" => "store#description", as: :product_description
-  get "show_cart" => "customers#show_cart", as: :show_cart
+  get "cart" => "customers#cart", as: :cart
   
   root 'store#index'
 

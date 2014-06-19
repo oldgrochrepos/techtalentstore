@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
 	has_many :line_items
 
 	#setting a constant as the sales tax
-	CURRENT_SALES_TAX = (0.7 * 100)
+	CURRENT_SALES_TAX = 0.07
 	#I'm using the sales tax rate of Fulton County (Atlanta),
 	#feel free to change it up to reflect your area,
 	#or think about how you could take a zip code from the customer
@@ -20,7 +20,8 @@ class Order < ActiveRecord::Base
 		#we now have the sum of all the items (quantity * price) wanting to be purchased
 
 		#we can now start assigning the attributes of our order
-		order.subtotal = sub_total
+		order.customer_id = customer.id
+		order.sub_total = sub_total
 		order.sales_tax = sub_total * CURRENT_SALES_TAX
 		order.grand_total = order.sub_total + order.sales_tax
 
@@ -28,8 +29,9 @@ class Order < ActiveRecord::Base
 			current_cart.each do |key, value|
 				line_item = LineItem.new
 				line_item.product_id = key
+				line_item.order_id = order.id
 				line_item.quantity = value[0]
-				line_item.unit_price = item[2]
+				line_item.unit_price = value[2]
 				line_item.line_item_total = line_item.quantity * line_item.unit_price
 				if line_item.save
 					#Here we're adjusting the quantity of our stock (in the database)
